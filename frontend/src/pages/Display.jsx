@@ -1,19 +1,16 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 const Display=()=>{
     const [mydata, setMydata]= useState([]);
-    const navigate = useNavigate();
-
 
     const loadData=async()=>{
-        let api="http://localhost:8000/user/studentdisplay";
-        
+      let api='http://localhost:8000/multerexample/displaydata';
+
         const response= await axios.get(api);
         console.log(response.data);
         setMydata(response.data);
-
     }
 
     useEffect(()=>{
@@ -27,12 +24,13 @@ const Display=()=>{
       return(
         <>
           <tr>
-            <td>  <img src={key.imgname} width="200" height="150" />  </td>
+            <td>
+              <img src={'http://localhost:8000/uploads/'+key.imgname} />
+               
+                 </td>
             <td> {key.rollno}  </td>
             <td> {key.name}  </td>
             <td> {key.city}  </td>
-            <td> {key.fees}  </td>
-           
           </tr> 
         </>
       )
@@ -47,7 +45,6 @@ const Display=()=>{
                 <th> Rollno</th>
                 <th> Name </th>
                 <th>  City </th>
-                <th> Fees</th>
             </tr>
             {ans}
           </table>

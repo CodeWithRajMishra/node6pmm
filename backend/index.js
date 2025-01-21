@@ -1,11 +1,12 @@
 const express= require("express");
 const app= express();
 const cors= require("cors");
+const multer = require('multer');
 const mongoose=require("mongoose");
 const bodyparser = require('body-parser');
-const userRoute= require("./routes/userRoute");
+const multerRoute= require("./routes/uploadmulterRoute");
 
-mongoose.connect("mongodb://127.0.0.1:27017/pm6imageupload").then(()=>{
+mongoose.connect("mongodb://127.0.0.1:27017/pm6multerupload").then(()=>{
     console.log("DB connected!");
 })
 app.use(cors());
@@ -13,7 +14,9 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 
 
-app.use("/user", userRoute);
+app.use("/multerexample", multerRoute);
+
+
 
 
 
